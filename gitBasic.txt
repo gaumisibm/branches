@@ -1,0 +1,69 @@
+To upload any folder to github
+1. check status of folder using "git status"
+	if you get "fatal: not a git repository (or any of the parent directories): .git"
+	then initialize with git init
+2. git init will have success as "Initialized empty Git repository in C:/Users/gaurav1527/Desktop/Infosys_Internship/fullstack/.git/"
+
+3. Now after initializing check "git status" and that should be 
+	On branch master
+
+	No commits yet
+
+	Untracked files:
+  	(use "git add <file>..." to include in what will be committed)
+
+        client/
+        server/
+4. Now do git add . -> this will add all the files to the staging area
+
+5. Now do git commit -m "Comment" -- this will commit all the changes
+	suppose you have commited twice, thrice or more then you can see the hash of commit using git log
+	this will log all the git change 
+
+	commit 7cdccc12baf4487544f5f8ea7bd994a7be9c9680 (HEAD -> main)
+	Author: Gaumis <kumargaurav1527@gmail.com>
+	Date:   Thu May 12 11:12:21 2022 +0530
+
+   	 second commit
+
+	commit 8d1ea11ed3c4a0fc8895f29fe4ddba60f11be409 (origin/main)
+	Author: Gaumis <kumargaurav1527@gmail.com>
+	Date:   Thu May 12 10:50:32 2022 +0530
+
+    	personal pc
+
+	and using git checkout 7cdccc12baf4487544f5f8ea7bd994a7be9c9680(hash value of commit) 
+	you can go back to the commit and you will have files from that time
+	using this you can comeback to any other place.
+	
+	And if you will go "git checkout master", you will comeback to master branch where latest changes are there
+
+6. Lets say you want to create one more branch where you will do random things and you don't want master branch to get affected
+	create a new branch using "git branch NAME_OF_BRANCH"
+	example - git branch dev
+	and now if you do git branch	
+	you will get two branches
+	dev
+	*(master)
+	and in the newly created dev branch also you can create many branches and ask individual to work
+	git checkout -b gaumis/multiply - this will create and checkout to new branch gaumis/multiply where
+	I will write multiple logic and suppose someone else's(samartha) want to work on subtraction then 
+	he too can create git checkout -b samartha/substract in dev branch and start working
+ 	and let's say that if we are convinced with gaurav development of multiply functionality
+	then we want that code in dev branch too as it is now only in dev->gaumis/multiply branch
+	then we'll first come to dev branch by git checkout dev and then we will merge code changes from gaumis/multiply
+	using "git merge gaumis/multiply"
+
+7. 	let's say you want to ignore some files from getting picked up in git
+	then you can create a file named .gitignore and specify what all files you don't need to tracked by git
+
+8. Now if you want to add any files/folder on github then do the following
+	tell local pc about the address of remote 
+	git remote add origin https://github.com/Gaumis/fullStack.git -> origin is the alias name for https address
+	git branch -M master -> tell git where to push the code
+	git push -u origin master -> this will upload code here.
+	if you will write "git push" then also it will work
+	here you have pushed master branch, now suppose you want to push dev branch
+	then do the following
+	git checkout dev
+	git push -u origin dev or git push(as you are in dev branch)
